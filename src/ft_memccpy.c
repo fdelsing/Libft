@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdelsing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 15:46:38 by fdelsing          #+#    #+#             */
-/*   Updated: 2017/11/15 16:44:10 by fdelsing         ###   ########.fr       */
+/*   Created: 2017/11/13 14:58:47 by fdelsing          #+#    #+#             */
+/*   Updated: 2018/02/01 19:58:22 by fdelsing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int i;
-	int nb;
-	int sign;
+	size_t	i;
 
 	i = 0;
-	nb = 0;
-	sign = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r' ||
-			str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		sign = 1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while ((ft_isdigit(str[i])) && str[i] != '\0')
+	while (i < n)
 	{
-		nb = (nb * 10) + str[i] - '0';
+		if (((unsigned char*)src)[i] == (unsigned char)c)
+		{
+			((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
+			return (dst + (i + 1));
+		}
+		((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
 		i++;
 	}
-	if (sign)
-		nb = -nb;
-	return (nb);
+	return (NULL);
 }

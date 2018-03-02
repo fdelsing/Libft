@@ -6,7 +6,7 @@
 /*   By: fdelsing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 11:29:14 by fdelsing          #+#    #+#             */
-/*   Updated: 2017/11/23 15:45:41 by fdelsing         ###   ########.fr       */
+/*   Updated: 2018/03/02 18:37:12 by fdelsing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
+
+# define BUFF_SIZE 100
 
 typedef	struct		s_list
 {
@@ -66,6 +69,8 @@ int					ft_tolower(int c);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_atoi(const char *str);
+int					ft_abs(int i);
+int					ft_get_next_line(const int fd, char **line);
 
 char				*ft_itoa(int n);
 char				*ft_strdup(const char *s1);

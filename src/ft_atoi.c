@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdelsing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 16:07:56 by fdelsing          #+#    #+#             */
-/*   Updated: 2017/11/22 13:53:54 by fdelsing         ###   ########.fr       */
+/*   Created: 2017/11/09 15:46:38 by fdelsing          #+#    #+#             */
+/*   Updated: 2018/01/31 16:52:59 by fdelsing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del) (void*, size_t))
+int		ft_atoi(const char *str)
 {
-	if (!alst)
-		return ;
-	del((*alst)->content, (*alst)->content_size);
-	(*alst)->content = NULL;
-	(*alst)->content_size = 0;
-	free(*alst);
-	*alst = NULL;
+	int i;
+	int nb;
+	int sign;
+
+	i = 0;
+	nb = 0;
+	sign = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r' ||
+			str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		sign = 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while ((ft_isdigit(str[i])) && str[i] != '\0')
+	{
+		nb = (nb * 10) + str[i] - '0';
+		i++;
+	}
+	if (sign)
+		nb = -nb;
+	return (nb);
 }
